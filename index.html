@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Perusahaan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #2980b9 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        #main {
+            padding: 30px;
+            background: #fff;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        form {
+            width: 100%;
+            padding: 20px;
+            background: #e6e6e6;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form .form-group {
+            margin-bottom: 15px;
+        }
+        form .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        form .form-group input,
+        form .form-group select,
+        form .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background: #50b3a2;
+            color: #fff;
+            border: 0;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Profil Perusahaan</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <section id="main">
+            <h2>Formulir Informasi Pribadi</h2>
+            <form id="infoForm">
+                <div class="form-group">
+                    <label for="nama">Nama:</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="tanggalLahir">Tanggal Lahir:</label>
+                    <input type="date" id="tanggalLahir" name="tanggalLahir" required>
+                </div>
+                <div class="form-group">
+                    <label for="jenisKelamin">Jenis Kelamin:</label>
+                    <select id="jenisKelamin" name="jenisKelamin" required>
+                        <option value="">Pilih...</option>
+                        <option value="laki-laki">Laki-laki</option>
+                        <option value="perempuan">Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pesan">Pesan:</label>
+                    <textarea id="pesan" name="pesan" rows="4" required></textarea>
+                </div>
+                <button type="submit">Kirim</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('infoForm').addEventListener('submit', function(event) {
+            // Ambil nilai dari elemen-elemen formulir
+            const nama = document.getElementById('nama').value.trim();
+            const tanggalLahir = document.getElementById('tanggalLahir').value;
+            const jenisKelamin = document.getElementById('jenisKelamin').value;
+            const pesan = document.getElementById('pesan').value.trim();
+
+            // Periksa apakah semua field telah diisi
+            if (nama === "" || tanggalLahir === "" || jenisKelamin === "" || pesan === "") {
+                alert("Semua field harus diisi!");
+                event.preventDefault(); // Menghentikan pengiriman form
+                return false;
+            }
+
+            // Validasi nama (hanya huruf dan spasi)
+            const namaRegex = /^[a-zA-Z\s]+$/;
+            if (!namaRegex.test(nama)) {
+                alert("Nama hanya boleh mengandung huruf dan spasi.");
+                event.preventDefault();
+                return false;
+            }
+
+            // Validasi pesan (panjang minimal 10 karakter)
+            if (pesan.length < 10) {
+                alert("Pesan harus berisi minimal 10 karakter.");
+                event.preventDefault();
+                return false;
+            }
+
+            // Jika semua validasi lulus, form dapat dikirim
+            alert("Formulir berhasil dikirim!");
+        });
+    </script>
+</body>
+</html>
